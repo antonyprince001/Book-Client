@@ -5,6 +5,7 @@ import { Route } from "react-router-dom";
 import Home from './Routes/Home';
 import BookDetail from './Routes/BookDetail';
 import BookUpdate from './Routes/BookUpdate';
+import BookCreate from './Routes/BookCreate';
 
 describe('Book Routes Component', () => {
 
@@ -31,6 +32,10 @@ describe('Book Routes Component', () => {
 
   it('Should render BookUpdate Component for /books/:id/update', () => {
     expect(pathMap['/books/:id/update']).toBe(BookUpdate);
+  });
+
+  it('Should render BookCreate Component for /books/:id/create', () => {
+    expect(pathMap['/books/:id/create']).toBe(BookCreate);
   });
 
 })
