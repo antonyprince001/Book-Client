@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import App from './App';
 import Navbar from './Components/Navbar';
 import BookRoutes from './BookRoutes';
+import { BookContextProvider } from '../Context/BookContext';
 
 describe('APP Component', ()=>{
 
