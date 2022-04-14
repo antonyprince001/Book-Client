@@ -3,8 +3,7 @@ import { BookContext, BookContextProvider } from './BookContext';
 describe('Test Book Context', ()=>{
 
   it('Context should be defined',()=>{
-    let context = useContext(BookContext)
-    expect(context).toBeDefined();
+    expect(<BookContext />).toBeDefined();
   });
 
   it('Context Provider be defined',()=>{
