@@ -1,7 +1,23 @@
+import { useEffect, useContext } from "react";
+import BookAPI from "../APIs/BookAPI";
+import { BookContext } from "../Context/BookContext";
+
 const BookTable = () => {
 
+    const { books, setBooks } = useContext(BookContext);
+
+    useEffect(() => {
+        const fetchBooks = async () => {
+            try {
+                const response = await BookAPI.get("/books");
+                setBooks(response.data);
+            } catch (err) { }
+        };
+        fetchBooks();
+    }, []);
+
     return (
-        <table class="table table-hover">
+        <table className="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -12,13 +28,19 @@ const BookTable = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                </tr>
+                {books &&
+                    books.map((book) => {
+                        return (
+                            <tr key={book.id}>
+                                <th scope="row">{book.id}</th>
+                                <td>{book.name}</td>
+                                <td>{book.author}</td>
+                                <td>{book.price}</td>
+                                <td>{book.rating}</td>
+                            </tr>
+                        );
+                    })
+                }
             </tbody>
         </table>)
 }

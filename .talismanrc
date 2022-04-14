@@ -2,5 +2,5 @@ fileignoreconfig:
 - filename: public/index.html
   checksum: 1367a8aeb85cc0df8f72c71b7a3349ed9404cf5ce5d6a0662b54918feb5d0617
 - filename: package-lock.json
-  checksum: f37770b8675082af03c4e5aa6e41e31545958a9fffec3a2f18ff9dc1b7f901a9
+  checksum: 952d4c5fcdbb398766fbb90fc85a9aa16659a14aff031941365695aeab000942
 version: ""

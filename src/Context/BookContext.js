@@ -1,6 +1,6 @@
 import React,{ useState, createContext } from "react";
 
-export const BookContext = createContext();
+export const BookContext = createContext("");
 
 export const BookContextProvider = props =>{
 
@@ -8,8 +8,9 @@ export const BookContextProvider = props =>{
     const [selectedBook,setSelectedBook] = useState(null);
 
     const addBook = (book) =>{
-        setRestaurants([...books,book]);
-    }
+        setBooks([...books,book]);
+    };
+
     return (
         <BookContext.Provider value={{
             books,

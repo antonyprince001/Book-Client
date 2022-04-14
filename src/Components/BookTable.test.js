@@ -1,22 +1,33 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import BookTable from './BookTable';
+import { BookContextProvider } from '../Context/BookContext';
 
-describe('Test BookTable Component', ()=>{
+describe('Test BookTable Component', () => {
 
-  let container;
+  let table;
 
-  beforeEach(() => (container = shallow(<BookTable />)))
+  beforeEach(() => (table = shallow(<BookTable />)))
 
-  it('Should render a table',()=>{
-    expect(container.find('table').length).toEqual(1);
+  it('Should render a table', () => {
+    expect(table.find('table').length).toEqual(1);
   });
 
-  it('Should render correct column heading',()=>{
-    expect(container.contains('Name'));
-    expect(container.contains('Author'));
-    expect(container.contains('Price'));
-    expect(container.contains('Rating'));
+  it('Should render correct column heading', () => {
+    expect(table.contains('Name'));
+    expect(table.contains('Author'));
+    expect(table.contains('Price'));
+    expect(table.contains('Rating'));
+  });
+
+  it('Should render table rows', () => {
+    const table = shallow(
+      <BookContextProvider>
+        <BookTable />
+      </BookContextProvider>
+    );
+    const row = table.find('tr')
+    expect(row.length).toBeGreaterThanOrEqual(0);
   });
 
 })
