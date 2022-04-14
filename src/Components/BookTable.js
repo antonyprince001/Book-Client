@@ -6,6 +6,14 @@ const BookTable = () => {
 
     const { books, setBooks } = useContext(BookContext);
 
+    const handleUpdate = (id) => {
+        console.log(id);
+    }
+
+    const handleDelete = (id) => {
+        console.log(id);
+    }
+
     useEffect(() => {
         const fetchBooks = async () => {
             try {
@@ -25,6 +33,8 @@ const BookTable = () => {
                     <th scope="col">Author</th>
                     <th scope="col">Price</th>
                     <th scope="col">Rating</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -37,6 +47,16 @@ const BookTable = () => {
                                 <td>{book.author}</td>
                                 <td>{book.price}</td>
                                 <td>{book.rating}</td>
+                                <td>
+                                    <button type="button" class="btn btn-success" id="update" onClick={() => { handleUpdate(book.id) }}>
+                                        Update
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" id="delete" onClick={() => { handleDelete(book.id) }}>
+                                        Delete
+                                    </button>
+                                </td>
                             </tr>
                         );
                     })
