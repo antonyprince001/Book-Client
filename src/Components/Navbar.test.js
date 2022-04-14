@@ -14,5 +14,5 @@ describe('Test Navbar Component', ()=>{
 
   it('Should have proper heading',()=>{
     expect(NavContainer.find('span').text()).toMatch(/Book Inventory/);
-  })
+  });
 })
