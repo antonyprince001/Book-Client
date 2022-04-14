@@ -11,7 +11,7 @@ const BookRoutes = ()=>{
             <Route path='/' exact element={ <Home />} />
             <Route path='/books/:id' exact element={ <BookDetail />} />
             <Route path='/books/:id/update' exact element={ <BookUpdate />} />
-            <Route path='/books/:id/create' exact element={ <BookCreate />} />
+            <Route path='/books/create' exact element={ <BookCreate />} />
         </Routes>
         </BrowserRouter>
     )

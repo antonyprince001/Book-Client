@@ -35,7 +35,7 @@ describe('Book Routes Component', () => {
   });
 
   it('Should render BookCreate Component for /books/:id/create', () => {
-    expect(pathMap['/books/:id/create']).toBe(BookCreate);
+    expect(pathMap['/books/create']).toBe(BookCreate);
   });
 
 })

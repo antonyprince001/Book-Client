@@ -1,7 +1,9 @@
+import BookForm from '../Components/BookForm';
+
 const BookCreate = () => {
     return (
         <div>
-            Book Create
+            <BookForm />
         </div>
     );
 }

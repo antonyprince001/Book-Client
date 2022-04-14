@@ -1,19 +1,26 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow , render } from 'enzyme';
 import Home from './Home';
 import BookTable from '../Components/BookTable';
 
-describe('Test Home Component', ()=>{
+const mockedUsedNavigate = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+   ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockedUsedNavigate,
+}));
+
+describe('Test Home Component', () => {
 
   let container;
 
   beforeEach(() => (container = shallow(<Home />)))
 
-  it('Should render BookTable',()=>{
+  it('Should render BookTable', () => {
     expect(container.containsMatchingElement(<BookTable />)).toEqual(true)
   });
 
-  it('Should render Add Book Button',()=>{
+  it('Should render Add Book Button', () => {
     expect(container.find('button').text()).toMatch(/Add Book/);
   });
 
