@@ -6,21 +6,31 @@ const BookTable = () => {
 
     const { books, setBooks } = useContext(BookContext);
 
-    const handleUpdate = (id) => {
+    const handleUpdate = (e,id) => {
+        e.stopPropagation();
         console.log(id);
     }
 
-    const handleDelete = (id) => {
-        console.log(id);
+    const handleDelete = async (e,id) => {
+        e.stopPropagation();
+        try {
+            const response = await BookAPI.delete(`book/${id}`);
+            console.log(response);
+            // setBooks(books.filter((book)=>{
+            //   return book.id !== id
+            // }));
+            fetchBooks();
+          }catch(err){}
     }
+
+    const fetchBooks = async () => {
+        try {
+            const response = await BookAPI.get("/books");
+            setBooks(response.data);
+        } catch (err) { }
+    };
 
     useEffect(() => {
-        const fetchBooks = async () => {
-            try {
-                const response = await BookAPI.get("/books");
-                setBooks(response.data);
-            } catch (err) { }
-        };
         fetchBooks();
     }, []);
 
@@ -48,12 +58,12 @@ const BookTable = () => {
                                 <td>{book.price}</td>
                                 <td>{book.rating}</td>
                                 <td>
-                                    <button type="button" class="btn btn-success" id="update" onClick={() => { handleUpdate(book.id) }}>
+                                    <button type="button" class="btn btn-success" id="update" onClick={(e) => { handleUpdate(e,book.id) }}>
                                         Update
                                     </button>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-danger" id="delete" onClick={() => { handleDelete(book.id) }}>
+                                    <button type="button" class="btn btn-danger" id="delete" onClick={(e) => { handleDelete(e,book.id) }}>
                                         Delete
                                     </button>
                                 </td>
