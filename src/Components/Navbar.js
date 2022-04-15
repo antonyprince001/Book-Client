@@ -2,7 +2,9 @@ const Navbar = () => {
     return (
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid justify-content-center">
-                <span class="navbar-brand mb-0 h1">Book Inventory</span>
+                <span class="navbar-brand mb-0 h1">        
+                    Book Inventory
+                </span>
             </div>
         </nav>
     );

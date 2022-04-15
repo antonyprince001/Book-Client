@@ -3,9 +3,9 @@ import { shallow } from 'enzyme';
 import BookRoutes from './BookRoutes';
 import { Route } from "react-router-dom";
 import Home from './Routes/Home';
-import BookDetail from './Routes/BookDetail';
 import BookUpdate from './Routes/BookUpdate';
 import BookCreate from './Routes/BookCreate';
+import NotFound from './Routes/NotFound';
 
 describe('Book Routes Component', () => {
 
@@ -26,10 +26,6 @@ describe('Book Routes Component', () => {
     expect(pathMap['/']).toBe(Home);
   });
 
-  it('Should render BookDetail Component for /books/:id', () => {
-    expect(pathMap['/books/:id']).toBe(BookDetail);
-  });
-
   it('Should render BookUpdate Component for /books/:id/update', () => {
     expect(pathMap['/books/:id/update']).toBe(BookUpdate);
   });
@@ -38,4 +34,7 @@ describe('Book Routes Component', () => {
     expect(pathMap['/books/create']).toBe(BookCreate);
   });
 
+  it('Should render NotFound Component for any other URL', () => {
+    expect(pathMap['*']).toBe(NotFound);
+  });
 })
