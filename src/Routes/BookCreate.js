@@ -39,7 +39,13 @@ const BookCreate = () => {
             <ToastContainer />
             <h3>Add Book</h3>
             <br />
-            <BookForm book={book} type="Add Book" successMsg="Added Book Successfully !" handleSubmit={createBook} notify={notify}/>
+            <BookForm 
+                book={book} 
+                type="Add Book" 
+                successMsg="Added Book Successfully !" 
+                handleSubmit={createBook} 
+                notify={notify} 
+            />
             </center>
         </div>
     );

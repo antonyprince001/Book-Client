@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const BookForm = ({ book, handleSubmit, type, successMsg, notify }) => {
+const BookForm = ({ book, handleSubmit, type, successMsg, notify}) => {
 
     const [name, setName] = useState(book.name);
     const [author, setAuthor] = useState(book.author);
@@ -9,7 +9,6 @@ const BookForm = ({ book, handleSubmit, type, successMsg, notify }) => {
     const [rating, setRating] = useState(book.rating);
 
     const navigate = useNavigate();
-
     const reset = () => {
         setName("");
         setAuthor("");

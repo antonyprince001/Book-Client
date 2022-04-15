@@ -1,7 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import BookTable from './BookTable';
-import { BookContextProvider } from '../Context/BookContext';
+
+const mockedUsedNavigate = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockedUsedNavigate,
+}));
 
 describe('Test BookTable Component', () => {
 

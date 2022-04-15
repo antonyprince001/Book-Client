@@ -2,6 +2,13 @@ import React from "react";
 import BookForm from "./BookForm";
 import {shallow} from "enzyme";
 
+const mockedUsedNavigate = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    useNavigate: () => mockedUsedNavigate,
+}));
+
 const book = {
     name : "",
     author : "",
@@ -11,10 +18,13 @@ const book = {
 
 describe("Rendering of Book Form", ()=>{
     let form;
+    
     const notify = jest.fn();
     const handleSubmit = jest.fn();
 
-    beforeAll(() => (form = shallow(<BookForm  book={book} type="" handleSubmit={handleSubmit} notify={notify}/>)))
+    beforeAll(() => (form = shallow( 
+    <BookForm  book={book} type="" handleSubmit={handleSubmit} notify={notify}/> 
+    )))
 
     it("Should render book name field",()=>{
         const nameField = form.find('Book Name');
