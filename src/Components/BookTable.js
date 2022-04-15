@@ -1,26 +1,25 @@
 import { useEffect, useContext } from "react";
 import BookAPI from "../APIs/BookAPI";
 import { BookContext } from "../Context/BookContext";
+import { useNavigate } from "react-router-dom";
 
 const BookTable = () => {
 
-    const { books, setBooks } = useContext(BookContext);
+    const { books, setBooks , selectedBook , setSelectedBook } = useContext(BookContext);
+    const navigate = useNavigate();
 
-    const handleUpdate = (e,id) => {
-        e.stopPropagation();
-        console.log(id);
-    }
-
-    const handleDelete = async (e,id) => {
-        e.stopPropagation();
+    const fetchBook = async (bookId) => {
         try {
-            const response = await BookAPI.delete(`book/${id}`);
-            console.log(response);
-            // setBooks(books.filter((book)=>{
-            //   return book.id !== id
-            // }));
-            fetchBooks();
-          }catch(err){}
+            const response = await BookAPI.get(`/book/${bookId}`);
+            console.log(response.data);
+            setSelectedBook(response.data);
+        } catch (err) { }
+    };
+
+    const handleUpdate = async (e,id) => {
+        e.stopPropagation();
+        await fetchBook(id);
+        navigate(`books/${id}/update`)
     }
 
     const fetchBooks = async () => {
@@ -29,6 +28,14 @@ const BookTable = () => {
             setBooks(response.data);
         } catch (err) { }
     };
+
+    const handleDelete = async (e,id) => {
+        e.stopPropagation();
+        try {
+            await BookAPI.delete(`book/${id}`);
+            fetchBooks();
+          }catch(err){}
+    }
 
     useEffect(() => {
         fetchBooks();
@@ -58,7 +65,7 @@ const BookTable = () => {
                                 <td>{book.price}</td>
                                 <td>{book.rating}</td>
                                 <td>
-                                    <button type="button" class="btn btn-success" id="update" onClick={(e) => { handleUpdate(e,book.id) }}>
+                                    <button type="button" class="btn btn-warning" id="update" onClick={(e) => { handleUpdate(e,book.id) }}>
                                         Update
                                     </button>
                                 </td>

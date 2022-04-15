@@ -7,7 +7,9 @@ describe('Test BookTable Component', () => {
 
   let table;
 
-  beforeEach(() => (table = shallow(<BookTable />)))
+  beforeEach(() => (table =  shallow(
+      <BookTable />
+  )))
 
   it('Should render a table', () => {
     expect(table.find('table').length).toEqual(1);
@@ -21,11 +23,6 @@ describe('Test BookTable Component', () => {
   });
 
   it('Should render table rows', () => {
-    const table = shallow(
-      <BookContextProvider>
-        <BookTable />
-      </BookContextProvider>
-    );
     const row = table.find('tr')
     expect(row.length).toBeGreaterThanOrEqual(0);
   });

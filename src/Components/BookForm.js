@@ -1,39 +1,44 @@
 import React, { useState } from "react";
-const BookForm = ({ book , handleSubmit, type, notify }) => {
+import { useNavigate } from "react-router-dom";
+
+const BookForm = ({ book, handleSubmit, type, successMsg, notify }) => {
 
     const [name, setName] = useState(book.name);
     const [author, setAuthor] = useState(book.author);
     const [price, setPrice] = useState(book.price);
     const [rating, setRating] = useState(book.rating);
 
-    const reset = ()=>{
+    const navigate = useNavigate();
+
+    const reset = () => {
         setName("");
         setAuthor("");
         setPrice(0);
         setRating(0);
     }
 
-    const handler = (e)=>{
+    const handler = (e) => {
         e.preventDefault();
 
-        if(name.trim() === "" || name === undefined){
+        if (name.trim() === "" || name === undefined) {
             notify("Check name field !");
         }
-        else if(author.trim() === "" || author === undefined){
+        else if (author.trim() === "" || author === undefined) {
             notify("Check author field !");
         }
-        else if(Number(price)<0 || price === undefined || price === "" || price === undefined){
+        else if (Number(price) < 0 || price === "" || price === undefined) {
             notify("Check price field !");
         }
-        else if((Number(rating) > 0 && Number(rating) < 5) || rating === "" || rating === undefined){
+        else if (Number(rating) < 0 || Number(rating) > 5 || rating === "" || rating === undefined) {
+            console.log(parseFloat(rating));
             notify("Rating should be between 0-5");
         }
-        else{
-            handleSubmit(name,author,price,rating);
+        else {
+            handleSubmit(name, author, price, rating);
             reset();
-            notify("Added a Book Successfully !");
+            notify(successMsg);
+            navigate('/');
         }
-    
     }
 
     return (
