@@ -14,7 +14,7 @@ const BookUpdate = () => {
 
     const updateBook = async (name, author, price, rating) => {
         try {
-            const response = await BookAPI.put(`/book/${id}`, {
+            const response = await BookAPI.put(`/books/${id}`, {
                 name,
                 author,
                 price,

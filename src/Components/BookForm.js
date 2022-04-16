@@ -9,11 +9,16 @@ const BookForm = ({ book, handleSubmit, type, successMsg, notify}) => {
     const [rating, setRating] = useState(book.rating);
 
     const navigate = useNavigate();
+
     const reset = () => {
         setName("");
         setAuthor("");
         setPrice(0);
         setRating(0);
+    }
+
+    const back = () => {
+        navigate('/');
     }
 
     const handler = (e) => {
@@ -87,6 +92,8 @@ const BookForm = ({ book, handleSubmit, type, successMsg, notify}) => {
             <br />
 
             <div className="col-5">
+                <button type="button" class="btn btn-dark" id="submit" onClick={back}>Back</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
                 <button type="button" class="btn btn-primary" id="submit" onClick={handler}>{type}</button>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <button type="button" class="btn btn-light" onClick={reset}>Reset</button>

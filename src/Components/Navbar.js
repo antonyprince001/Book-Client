@@ -1,8 +1,8 @@
 const Navbar = () => {
     return (
-        <nav class="navbar navbar-light bg-light">
+        <nav class="navbar navbar-light bg-dark">
             <div class="container-fluid justify-content-center">
-                <span class="navbar-brand mb-0 h1">        
+                <span class="navbar-brand mb-0 h1 text-light">        
                     Book Inventory
                 </span>
             </div>

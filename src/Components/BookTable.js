@@ -10,7 +10,7 @@ const BookTable = () => {
 
     const fetchBook = async (bookId) => {
         try {
-            const response = await BookAPI.get(`/book/${bookId}`);
+            const response = await BookAPI.get(`/books/${bookId}`);
             console.log(response.data);
             setSelectedBook(response.data);
         } catch (err) { }
@@ -32,7 +32,7 @@ const BookTable = () => {
     const handleDelete = async (e,id) => {
         e.stopPropagation();
         try {
-            await BookAPI.delete(`book/${id}`);
+            await BookAPI.delete(`books/${id}`);
             fetchBooks();
           }catch(err){}
     }
@@ -42,7 +42,7 @@ const BookTable = () => {
     }, []);
 
     return (
-        <table className="table table-hover">
+        <table className="table table-hover table-success">
             <thead>
                 <tr>
                     <th scope="col">#</th>

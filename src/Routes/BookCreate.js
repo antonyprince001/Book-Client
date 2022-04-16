@@ -20,7 +20,7 @@ const BookCreate = () => {
 
     const createBook = async (name,author,price,rating)=>{
         try{
-        const response =  await BookAPI.post("/book", {
+        const response =  await BookAPI.post("/books", {
             name,
             author,
             price,
