@@ -10,7 +10,7 @@ const BookUpdate = () => {
 
     const notify = (msg) => toast(msg);
     const { id } = useParams();
-    const { selectedBook , setSelectedBook } = useContext(BookContext);
+    const { selectedBook } = useContext(BookContext);
 
     const updateBook = async (name, author, price, rating) => {
         try {

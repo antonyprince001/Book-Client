@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 
 const BookTable = () => {
 
-    const { books, setBooks , selectedBook , setSelectedBook } = useContext(BookContext);
+    const { books, setBooks , setSelectedBook } = useContext(BookContext);
     const navigate = useNavigate();
     const [currentPage,setCurrentPage] = useState(1);
-    const [booksPerPage, setBooksPerPage] = useState(2);
+    
+    let booksPerPage = 2;
 
     const fetchBook = async (bookId) => {
         try {
@@ -41,6 +42,7 @@ const BookTable = () => {
 
     useEffect(() => {
         fetchBooks();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     

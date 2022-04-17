@@ -1,12 +1,8 @@
-import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import BookTable from "../Components/BookTable";
-import { BookContext } from "../Context/BookContext";
 
 const Home = () => {
     const navigate = useNavigate();
-
-    const { books, setBooks } = useContext(BookContext);
 
     return (
         <div>
