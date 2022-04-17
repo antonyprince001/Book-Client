@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import BookAPI from "../APIs/BookAPI";
 import { BookContext } from "../Context/BookContext";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,8 @@ const BookTable = () => {
 
     const { books, setBooks , selectedBook , setSelectedBook } = useContext(BookContext);
     const navigate = useNavigate();
+    const [currentPage,setCurrentPage] = useState(1);
+    const [booksPerPage, setBooksPerPage] = useState(2);
 
     const fetchBook = async (bookId) => {
         try {
@@ -41,7 +43,26 @@ const BookTable = () => {
         fetchBooks();
     }, []);
 
+    
+    let lastIndex = currentPage*booksPerPage;
+    let firstIndex = lastIndex - booksPerPage;
+    let currentBooks = books.slice(firstIndex,lastIndex);
+    let totalPages = Math.ceil(books.length/booksPerPage);
+
+    const handlePrevious = ()=>{
+        if(currentPage > 1){
+            setCurrentPage(currentPage-1);
+        }
+    }
+
+    const handleNext = ()=>{
+        if(currentPage < Math.ceil(books.length/booksPerPage)){
+            setCurrentPage(currentPage+1);
+        }
+    }
+
     return (
+        <>
         <table className="table table-hover table-success">
             <thead>
                 <tr>
@@ -56,7 +77,11 @@ const BookTable = () => {
             </thead>
             <tbody>
                 {books &&
-                    books.map((book) => {
+                    books.length === 0 ?
+                    <tr align="center">
+                        <td colSpan="7">No Books Available</td>
+                    </tr> :
+                    currentBooks.map((book) => {
                         return (
                             <tr key={book.id}>
                                 <th scope="row">{book.id}</th>
@@ -79,6 +104,21 @@ const BookTable = () => {
                     })
                 }
             </tbody>
-        </table>)
-}
+        </table>
+        <nav aria-label="Page navigation example">
+        <ul className="pagination justify-content-center">
+             
+            <li className="page-item">
+                <button className="page-link" onClick={handlePrevious}>Previous</button>
+            </li>
+            <li className="page-item"><button className="page-link">Showing Page {currentPage} of  {totalPages}</button></li>
+            <li className="page-item">
+                <button className="page-link" onClick={handleNext}>Next</button>
+            </li>
+            
+        </ul>
+    </nav>
+    </>
+    )
+}   
 export default BookTable;
