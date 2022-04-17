@@ -2,7 +2,7 @@ fileignoreconfig:
 - filename: public/index.html
   checksum: 1367a8aeb85cc0df8f72c71b7a3349ed9404cf5ce5d6a0662b54918feb5d0617
 - filename: package-lock.json
-  checksum: fb7ab0883c0df4d706b5eacf3d76f399fa1659be8e4a7e9820e695b3c13d2a74
+  checksum: 4e0fd33c387cc1d8356777d5310bf66839089ee0f4312192bbc0fab1245e10df
 - filename: src/Components/BookTable.js
   checksum: 4a67a8f2b508ec23629415c9b5502eb1cf97d8e701f8c4263dd895767f47797a
 version: ""
